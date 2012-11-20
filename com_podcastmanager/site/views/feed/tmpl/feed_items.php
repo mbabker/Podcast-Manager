@@ -23,31 +23,29 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
 <form action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post" name="adminForm" id="adminForm" class="form-inline">
 	<?php if ($this->params->get('show_headings') || $this->params->get('filter_field') != 'hide' || $this->params->get('show_pagination_limit')) : ?>
+
+	<?php if ($this->params->get('filter_field') != 'hide') : ?>
 	<fieldset class="filters alert alert-info">
-		<?php if ($this->params->get('filter_field') != 'hide') : ?>
 		<div class="filter-search">
 			<label class="filter-search-lbl" for="filter-search"><?php echo JText::_('COM_PODCASTMANAGER_FILTER_SEARCH_LABEL') . '&#160;'; ?></label>
 			<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')); ?>" class="inputbox span4" onchange="document.adminForm.submit();" title="<?php echo JText::_('COM_PODCASTMANAGER_FILTER_SEARCH_DESCRIPTION'); ?>" />
 		</div>
-		<?php endif;
-
-		if ($this->params->get('show_pagination_limit')) : ?>
+		<?php if ($this->params->get('show_pagination_limit')) : ?>
 		<label>
 			<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>
 		</label>
-		<?php echo $this->pagination->getLimitBox();
-		endif; ?>
-
+		<?php echo $this->pagination->getLimitBox(); ?>
+		<?php endif; ?>
 		<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
 		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
 		<input type="hidden" name="limitstart" value="" />
 	</fieldset>
-	<?php endif;
+	<?php endif; ?>
+	<?php endif; ?>
 
-	if (empty($this->items)) : ?>
+	<?php if (empty($this->items)) : ?>
 	<p><?php echo JText::_('COM_PODCASTMANAGER_NO_ITEMS'); ?></p>
 	<?php else : ?>
-
 	<table class="table table-bordered">
 		<?php if ($this->params->get('show_headings')) : ?>
 		<thead>
@@ -78,22 +76,22 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 			?>
 				<td class="list-title">
 					<p>
-						<?php // Compute the correct link
-						if ((JPluginHelper::isEnabled('content', 'podcastmanager')) && $this->params->get('show_item_player')) :
-							echo $this->escape($item->title) . '<br />' . $item->text;
-						else :
-							$menuclass = 'podcast' . $this->pageclass_sfx;
-
-							// Check if the file is from off site
-							if (preg_match('/^http/', $item->filename)) :
-								// The file is off site
-								$link = $item->filename;
-							else :
-								// The file is stored on site
-								$link = JUri::base() . $item->filename;
-							endif;
-							// Process the URL through the helper to get the stat tracking details if applicable
-							$link = PodcastManagerHelper::getMediaUrl($link);
+						<?php // Compute the correct link ?>
+						<?php if ((JPluginHelper::isEnabled('content', 'podcastmanager')) && $this->params->get('show_item_player')) : ?>
+							<?php echo $this->escape($item->title) . '<br />' . $item->text; ?>
+						<?php else : ?>
+							<?php
+								$menuclass = 'podcast' . $this->pageclass_sfx;
+								// Check if the file is from off site
+								if (preg_match('/^http/', $item->filename)) :
+									// The file is off site
+									$link = $item->filename;
+								else :
+									// The file is stored on site
+									$link = JUri::base() . $item->filename;
+								endif;
+								// Process the URL through the helper to get the stat tracking details if applicable
+								$link = PodcastManagerHelper::getMediaUrl($link);
 							?>
 							<a href="<?php echo $link; ?>" class="<?php echo $menuclass; ?>" rel="nofollow">
 								<?php echo $this->escape($item->title); ?>
@@ -106,9 +104,9 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 							<?php echo JHtml::_('icon.podcastedit', $item, $this->params); ?>
 						</li>
 					</ul>
-					<?php endif;
+					<?php endif; ?>
 
-					if (($this->params->get('show_item_description')) AND ($item->itSummary)) : ?>
+					<?php if (($this->params->get('show_item_description')) AND ($item->itSummary)) : ?>
 					<p><?php echo nl2br($item->itSummary); ?></p>
 					<?php endif; ?>
 				</td>
@@ -131,9 +129,9 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 			<p class="counter pull-right">
 				<?php echo $this->pagination->getPagesCounter(); ?>
 			</p>
-			<?php endif;
-			echo $this->pagination->getPagesLinks(); ?>
+			<?php endif; ?>
+			<?php echo $this->pagination->getPagesLinks(); ?>
 		</div>
-		<?php endif;
-	endif; ?>
+		<?php endif; ?>
+	<?php endif; ?>
 </form>
