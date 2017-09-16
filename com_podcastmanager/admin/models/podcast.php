@@ -569,7 +569,7 @@ class PodcastManagerModelPodcast extends JModelAdmin
 	 *
 	 * @since   1.6
 	 */
-	protected function prepareTable(&$table)
+	protected function prepareTable($table)
 	{
 		// Set the publish date to now
 		if ($table->published == 1 && intval($table->publish_up) == 0)
