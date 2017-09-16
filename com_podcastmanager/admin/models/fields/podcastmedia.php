@@ -73,7 +73,7 @@ class JFormFieldPodcastMedia extends JFormField
 			$script[] = '		if (old_id != id) {';
 			$script[] = '			var elem = document.id(id)';
 			$script[] = '			elem.value = value;';
-			$script[] = '			elem.onchange();';
+			$script[] = '			elem.dispatchEvent(new Event(\'change\'));';
 			$script[] = '		}';
 			$script[] = '	}';
 
