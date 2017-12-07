@@ -174,6 +174,7 @@ class Pkg_PodcastManagerInstallerScript
 	 */
 	public function postflight($type, $parent, $results)
 	{
+		$strapped = false;
 		// If in CMS 3, install the Strapped layouts
 		if (version_compare(JVERSION, '3.0', 'ge') && $type == 'install')
 		{
