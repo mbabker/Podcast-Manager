@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -45,7 +45,8 @@ class PodcastManagerModelPodcasts extends JModelList
 				'feedname', 'a.feedname',
 				'published', 'a.published',
 				'created', 'a.created',
-				'language', 'a.language'
+				'language', 'a.language',
+				'publish_up', 'a.publish_up'
 			);
 		}
 

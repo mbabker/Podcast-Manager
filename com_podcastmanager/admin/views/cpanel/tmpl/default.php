@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -14,8 +14,12 @@
 
 defined('_JEXEC') or die;
 
+// If we're running Joomla! 3 and the Isis layouts aren't installed, assume we need to help the user migrate
+if (version_compare(JVERSION, '3.0', 'ge')) :
+	echo $this->loadTemplate('migrate');
+else :
 // Site addresses to be processed outside JText
-$babdev		= '<a href="http://www.babdev.com/extensions/podcast-manager" target="_blank">http://www.babdev.com/extensions/podcast-manager</a>';
+$babdev		= '<a href="https://www.babdev.com/extensions/podcast-manager" target="_blank">https://www.babdev.com/extensions/podcast-manager</a>';
 $getid3		= '<b><a href="http://www.getid3.org" target="_blank">getID3</a></b>';
 $liveupdate	= '<b><a href="https://www.akeebabackup.com/software/akeeba-live-update.html" target="_blank">Akeeba Live Update</a></b>';
 $mejs		= '<b><a href="http://mediaelementjs.com" target="_blank">MediaElement.JS</a></b>';
@@ -94,3 +98,4 @@ JHtml::_('behavior.framework');
 		<?php echo JHtml::_('sliders.end'); ?>
 	</div>
 </div>
+<?php endif;

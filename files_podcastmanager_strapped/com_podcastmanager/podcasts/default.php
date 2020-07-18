@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  files_podcastmanager_strapped
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -103,11 +103,11 @@ $sortFields = $this->getSortFields();
 					<th width="10%" class="hidden-phone">
 						<?php echo JText::_('COM_PODCASTMANAGER_HEADING_FEEDNAME'); ?>
 					</th>
-					<th width="5%" class="hidden-phone">
-						<?php echo JText::_('JDATE'); ?>
+					<th width="10%" class="hidden-phone">
+						<?php echo JText::_('JGLOBAL_CREATED_DATE'); ?>
 					</th>
-					<th width="5%" class="hidden-phone">
-						<?php echo JText::_('COM_PODCASTMANAGER_HEADING_PUBLISH_DATE'); ?>
+					<th width="10%" class="hidden-phone">
+						<?php echo JText::_('JGLOBAL_PUBLISHED_DATE'); ?>
 					</th>
 					<th width="5%" class="hidden-phone">
 						<?php echo JText::_('JGRID_HEADING_LANGUAGE'); ?>

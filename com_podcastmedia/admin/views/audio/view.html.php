@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmedia
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -90,6 +90,13 @@ class PodcastMediaViewAudio extends JViewLegacy
 		$this->require_ftp = $ftp;
 
 		JHtml::_('behavior.framework', true);
+
+		// The popup JS is jQuery based for 3.0
+		if (version_compare(JVERSION, '3.0', 'ge'))
+		{
+			JHtml::_('jquery.framework');
+		}
+
 		JHtml::_('script', 'podcastmanager/popup-audiomanager.js', false, true);
 		JHtml::_('stylesheet', 'media/popup-imagemanager.css', array(), true);
 

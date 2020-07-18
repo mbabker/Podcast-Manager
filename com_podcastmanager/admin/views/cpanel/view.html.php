@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -23,6 +23,14 @@ defined('_JEXEC') or die;
  */
 class PodcastManagerViewCpanel extends JViewLegacy
 {
+	/**
+	 * Container for Joomla! 3 migration errors
+	 *
+	 * @var    array
+	 * @since  2.2
+	 */
+	protected $migrationErrors = array();
+
 	/**
 	 * Display the view
 	 *
@@ -42,12 +50,18 @@ class PodcastManagerViewCpanel extends JViewLegacy
 			return false;
 		}
 
+		// Check for migration errors for Joomla! 3
+		if (version_compare(JVERSION, '3.0', 'ge'))
+		{
+			$this->migrationErrors = $this->get('migrationErrors');
+		}
+
 		// Add the component media
 		JHtml::_('stylesheet', 'podcastmanager/template.css', false, true, false);
 
 		$this->addToolbar();
 
-		parent::display($tpl);
+		return parent::display($tpl);
 	}
 
 	/**

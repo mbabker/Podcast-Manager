@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -130,7 +130,8 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		</tbody>
 	</table>
 
-	<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
+	<?php $paginationParam = version_compare(JVERSION, '3.0', 'lt') ? 'pages.total' : 'pagesTotal'; ?>
+	<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get($paginationParam) > 1)) : ?>
 		<div class="pagination">
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
 			<p class="counter pull-right">

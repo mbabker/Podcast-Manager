@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 // Check for a token if accessing from front end
 if (JFactory::getApplication()->isSite())
 {
-	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+	JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
 }
 
 JHtml::_('behavior.tooltip');

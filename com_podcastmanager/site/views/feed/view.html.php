@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -188,7 +188,7 @@ class PodcastManagerViewFeed extends JViewLegacy
 
 		$id = (int) @$menu->query['id'];
 
-		if ($menu && ($menu->query['option'] != 'com_podcastmanager' || $id != $this->feed->id))
+		if (isset($this->feed->id) && $menu && ($menu->query['option'] != 'com_podcastmanager' || $id != $this->feed->id))
 		{
 			$this->params->set('page_subheading', $this->feed->name);
 			$path = array(array('title' => $this->feed->name, 'link' => ''));
@@ -233,13 +233,13 @@ class PodcastManagerViewFeed extends JViewLegacy
 			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 
-		if ($this->feed->author)
+		if (isset($this->feed->author))
 		{
 			$this->document->setMetaData('author', $this->feed->author);
 		}
 
 		// Add alternative feed link
-		if ($this->feed->id && $this->params->get('show_feed_link', 1) == 1)
+		if (isset($this->feed->id) && $this->params->get('show_feed_link', 1) == 1)
 		{
 			$link	= '&format=raw&layout=default&feedname=' . $this->feed->id;
 			$attribs = array('type' => 'application/rss+xml', 'title' => 'RSS 2.0');

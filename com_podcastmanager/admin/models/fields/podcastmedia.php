@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -106,7 +106,6 @@ class JFormFieldPodcastMedia extends JFormField
 			$html[] = '<div class="fltlft">';
 			$html[] = '	<input type="text" name="' . $this->name . '" id="' . $this->id . '"' . ' value="'
 				. htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"' . $attr . ' />';
-			$html[] = '</div>';
 		}
 
 		// Check if only one podcastmedia plugin is enabled

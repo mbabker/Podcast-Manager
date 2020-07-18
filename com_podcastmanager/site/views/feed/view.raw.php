@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -75,7 +75,9 @@ class PodcastManagerViewFeed extends JViewLegacy
 		// Get the data from the model
 		$items = $this->get('Items');
 		$feed  = $this->get('Feed');
-		$feedurl = JRoute::_('index.php?option=com_podcastmanager&format=raw&feedname=' . $feed->id);
+
+		// The last param has to be 3 so that both 2.5 and 3.x detect we want the site domain prepended since using 0 as specified in docs does not work
+		$feedurl = JRoute::_('index.php?option=com_podcastmanager&format=raw&feedname=' . $feed->id, false, 3);
 
 		$document = JFactory::getDocument();
 		$document->setMimeEncoding('application/rss+xml');

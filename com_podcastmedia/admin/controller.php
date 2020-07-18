@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmedia
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -73,13 +73,7 @@ class PodcastMediaController extends JControllerLegacy
 		$vType = JFactory::getDocument()->getType();
 
 		// Get/Create the view
-		$view = $this->getView($vName, $vType);
-
-		// Add the template path for requests coming from the site app
-		if ($app->isSite())
-		{
-			$view->addTemplatePath(JPATH_COMPONENT_ADMINISTRATOR . '/views/' . strtolower($vName) . '/tmpl');
-		}
+		$view = $this->getView($vName, $vType, '', array('base_path' => JPATH_COMPONENT_ADMINISTRATOR));
 
 		// Get/Create the model
 		if ($model = $this->getModel($mName))

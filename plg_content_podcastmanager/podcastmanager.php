@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  plg_content_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -86,6 +86,16 @@ class PlgContentPodcastManager extends JPlugin
 
 			$article->text = $article->player;
 			$feedView = $context;
+		}
+
+		// Special handling for com_tags if needed
+		if ($context == 'com_tags.tag')
+		{
+			// If there isn't a text element, set it as that's what we're using
+			if (!isset($article->text) || !$article->text)
+			{
+				$article->text = $article->core_body;
+			}
 		}
 
 		// Simple performance check to determine whether plugin should process further

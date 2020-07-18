@@ -5,7 +5,7 @@
  * @package     PodcastManager
  * @subpackage  com_podcastmanager
  *
- * @copyright   Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @copyright   Copyright (C) 2011-2015 Michael Babker. All rights reserved.
  * @license     GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Podcast Manager is based upon the ideas found in Podcast Suite created by Joe LeBlanc
@@ -15,13 +15,13 @@
 defined('_JEXEC') or die;
 
 // Check if user is allowed to add/edit based on component permissions.
-$canEdit = $this->feed->id && $this->user->authorise('core.edit', 'com_podcastmanager.feed.' . $this->feed->id);
+$canEdit = isset($this->feed->id) && $this->user->authorise('core.edit', 'com_podcastmanager.feed.' . $this->feed->id);
 ?>
 <div class="podcastmanager-feed<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->def('show_page_heading', 1)) : ?>
 	<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 <?php endif;
-if ($this->feed->name && $this->params->get('show_feed_title', 1)) : ?>
+if (isset($this->feed->name) && $this->params->get('show_feed_title', 1)) : ?>
 	<h2><?php echo JHtml::_('content.prepare', $this->feed->name); ?></h2>
 <?php endif;
 if ($this->params->get('show_feed_description', 1) || $this->params->get('show_feed_image', 1)) : ?>
