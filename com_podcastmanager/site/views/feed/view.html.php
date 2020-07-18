@@ -127,7 +127,7 @@ class PodcastManagerViewFeed extends JViewLegacy
 
 			// Process the content plugins.
 			JPluginHelper::importPlugin('content');
-			$dispatcher->trigger('onContentPrepare', array('com_podcastmanager.feed', &$item, &$this->params));
+			$dispatcher->trigger('onContentPrepare', array('com_podcastmanager.feed', &$item, &$this->params,0));
 		}
 
 		// Escape strings for HTML output
